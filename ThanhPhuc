@@ -1,0 +1,16 @@
+local RunService = game:Service("Service")
+local Players = game:Service("Players")
+local player = Players.LocalPlayer
+
+-- Kiểm tra liên tục ở mỗi khung hình để tắt va chạm
+RunService.Stepped:Connect(function()
+    local character = player.Character
+    if character then
+        for _, part in pairs(character:GetChildren()) do
+            if part:IsA("BasePart") and part.CanCollide == true then
+                part.CanCollide = false
+            end
+        end
+    end
+end)
+
